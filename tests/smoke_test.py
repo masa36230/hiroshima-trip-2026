@@ -38,6 +38,9 @@ def assert_page(page, viewport_name):
     assert page.locator(".timeline").count() == 4
     assert page.locator("[data-booking]").count() == 7
     page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-hero.png"))
+    page.locator("#overview").scroll_into_view_if_needed()
+    page.wait_for_timeout(250)
+    page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-overview.png"))
 
     for image in page.locator("img").all():
         image.scroll_into_view_if_needed()
