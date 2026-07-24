@@ -50,9 +50,12 @@ def assert_page(page, viewport_name):
               await new Promise((resolve) => {
                 img.addEventListener("load", resolve, {once: true});
                 img.addEventListener("error", resolve, {once: true});
-              });
+                });
             }"""
         )
+    page.locator("#dining").scroll_into_view_if_needed()
+    page.wait_for_timeout(250)
+    page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-dining.png"))
     page.evaluate("window.scrollTo(0, 0)")
 
     image_results = page.locator("img").evaluate_all(

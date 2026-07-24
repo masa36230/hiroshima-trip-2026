@@ -1114,7 +1114,7 @@ a {
 }
 
 .dining {
-  padding-bottom: clamp(110px, 14vw, 190px);
+  padding-bottom: clamp(90px, 10vw, 140px);
 }
 
 .food-feature-grid {
@@ -1126,147 +1126,92 @@ a {
 
 .food-card {
   position: relative;
-  min-height: 430px;
-  padding: 30px;
-  color: var(--white);
-  background: var(--ink);
+  min-width: 0;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid rgba(16, 44, 58, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  box-shadow: 0 14px 36px rgba(16, 44, 58, 0.08);
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
 }
 
 .food-card:hover {
-  transform: translateY(-7px);
-}
-
-.food-card-anago {
-  color: var(--ink);
-  background: var(--sea);
-}
-
-.food-card-oyster {
-  background: var(--vermilion);
+  box-shadow: 0 22px 50px rgba(16, 44, 58, 0.14);
+  transform: translateY(-5px);
 }
 
 .food-number {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  left: 16px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: var(--white);
+  background: rgba(9, 31, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
   font-family: var(--font-serif);
-  font-size: 12px;
+  font-size: 11px;
+  backdrop-filter: blur(8px);
 }
 
-.food-illustration {
+.food-photo {
   position: relative;
-  height: 210px;
-  margin: 18px -10px 20px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-deep);
 }
 
-.food-illustration-okonomi span {
-  position: absolute;
-  width: 190px;
-  height: 110px;
-  left: 50%;
-  top: 50%;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(-7deg);
-  background:
-    repeating-linear-gradient(86deg, transparent 0 7px, rgba(255, 255, 255, 0.14) 7px 9px),
-    radial-gradient(circle at 45% 35%, #d8bd76 0 4px, transparent 5px),
-    #93623d;
-  box-shadow:
-    0 18px 35px rgba(0, 0, 0, 0.26),
-    inset 0 0 0 10px rgba(63, 30, 17, 0.18);
-}
-
-.food-illustration-okonomi i {
-  position: absolute;
-  width: 250px;
-  height: 155px;
-  left: 50%;
-  top: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.food-illustration-anago span {
-  position: absolute;
-  width: 220px;
-  height: 130px;
-  left: 50%;
-  top: 50%;
-  border-radius: 5px 5px 42px 42px;
-  transform: translate(-50%, -40%) rotate(3deg);
-  background: #efe3cb;
-  box-shadow: 0 19px 30px rgba(16, 44, 58, 0.18);
-}
-
-.food-illustration-anago span::after {
+.food-photo::after {
   position: absolute;
   content: "";
-  inset: 16px 18px 45px;
-  border-radius: 48%;
-  transform: rotate(-6deg);
-  background:
-    repeating-linear-gradient(90deg, transparent 0 15px, rgba(76, 36, 19, 0.25) 15px 17px),
-    #8f4c2f;
-  box-shadow: 0 10px 0 #d7cbb5;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 64%, rgba(5, 23, 35, 0.2));
+  pointer-events: none;
 }
 
-.food-illustration-anago i {
-  position: absolute;
-  width: 154px;
-  height: 14px;
-  left: 50%;
-  top: 33px;
-  background: rgba(16, 44, 58, 0.25);
-  transform: translateX(-50%) rotate(-6deg);
+.food-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.food-illustration-oyster span,
-.food-illustration-oyster i {
-  position: absolute;
-  width: 134px;
-  height: 90px;
-  border: 3px solid #d2bda4;
-  border-radius: 60% 42% 55% 45%;
-  background:
-    radial-gradient(ellipse at 52% 55%, #d6a55d 0 18%, #eee2c8 20% 36%, #596368 38% 44%, transparent 46%),
-    #877a6d;
-  box-shadow: 0 20px 32px rgba(81, 24, 14, 0.25);
+.food-card:hover .food-photo img {
+  transform: scale(1.035);
 }
 
-.food-illustration-oyster span {
-  left: 22%;
-  top: 36%;
-  transform: rotate(-17deg);
-}
-
-.food-illustration-oyster i {
-  right: 18%;
-  top: 27%;
-  transform: rotate(19deg);
+.food-copy {
+  padding: 24px 26px 28px;
 }
 
 .food-day {
   margin: 0 0 8px;
-  opacity: 0.62;
+  color: var(--vermilion);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.18em;
 }
 
-.food-card h3 {
+.food-copy h3 {
   margin: 0;
   font-family: var(--font-serif);
   font-size: 28px;
   font-weight: 500;
 }
 
-.food-card > p:not(.food-day) {
+.food-place {
   margin: 8px 0 4px;
   font-size: 12px;
 }
 
-.food-card > small {
-  opacity: 0.68;
+.food-copy small {
+  color: var(--ink-soft);
   font-size: 10px;
 }
 
@@ -1310,64 +1255,8 @@ a {
   border-bottom-color: var(--vermilion) !important;
 }
 
-.hotel-break {
-  position: relative;
-  min-height: 78vh;
-  display: flex;
-  align-items: center;
-  color: var(--white);
-  overflow: hidden;
-}
-
-.hotel-break-bg,
-.hotel-break-shade {
-  position: absolute;
-  inset: 0;
-}
-
-.hotel-break-bg {
-  background: url("assets/setouchi-hero.jpg") center 45% / cover no-repeat;
-  transform: scale(1.02);
-}
-
-.hotel-break-shade {
-  background: linear-gradient(90deg, rgba(5, 23, 35, 0.8), rgba(5, 23, 35, 0.16));
-}
-
-.hotel-break-content {
-  position: relative;
-  z-index: 1;
-  width: min(1180px, calc(100% - 48px));
-  margin: 0 auto;
-}
-
-.hotel-break h2 {
-  margin: 0 0 30px;
-  font-family: var(--font-serif);
-  font-size: clamp(48px, 7vw, 88px);
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.hotel-break-content > p:not(.eyebrow) {
-  font-family: var(--font-serif);
-  font-size: clamp(16px, 2vw, 22px);
-  line-height: 1.9;
-}
-
-.hotel-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.hotel-points span {
-  padding: 8px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 99px;
-  font-size: 10px;
-  backdrop-filter: blur(8px);
+.booking {
+  border-top: 1px solid var(--line);
 }
 
 .booking-intro {
@@ -1900,12 +1789,7 @@ footer > p {
   }
 
   .food-feature-grid {
-    gap: 10px;
-  }
-
-  .food-card {
-    min-height: 400px;
-    padding: 24px;
+    gap: 14px;
   }
 }
 
@@ -2149,8 +2033,8 @@ footer > p {
     margin-top: 50px;
   }
 
-  .food-card {
-    min-height: 410px;
+  .food-photo {
+    aspect-ratio: 16 / 10;
   }
 
   .meal-list {
@@ -2198,28 +2082,6 @@ footer > p {
 
   .meal-special span:nth-child(2) {
     color: rgba(255, 255, 255, 0.7) !important;
-  }
-
-  .hotel-break {
-    min-height: 690px;
-  }
-
-  .hotel-break-bg {
-    background-position: 62% center;
-  }
-
-  .hotel-break-shade {
-    background: linear-gradient(0deg, rgba(5, 23, 35, 0.85), rgba(5, 23, 35, 0.16));
-  }
-
-  .hotel-break-content {
-    width: calc(100% - 40px);
-    align-self: flex-end;
-    padding-bottom: 96px;
-  }
-
-  .hotel-break h2 {
-    font-size: 49px;
   }
 
   .booking-intro {

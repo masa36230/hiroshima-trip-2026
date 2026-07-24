@@ -20,6 +20,7 @@ python3 -m http.server 4173
 ## 写真
 
 - メインビジュアル：OpenAI ImageGenで生成したオリジナル
+- お好み焼き・穴子飯・加熱牡蠣の料理写真：OpenAI ImageGenで生成したオリジナル
 - 宮島・牡蠣：Zion C / Unsplash
 - 原爆ドーム：Josip Ivanković / Unsplash
 - 縮景園：Nikola Majksner / Unsplash
