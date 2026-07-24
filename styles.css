@@ -1222,7 +1222,7 @@ a {
 
 .meal-list > div {
   display: grid;
-  grid-template-columns: 0.6fr 0.6fr 1.4fr 2.1fr 1.1fr;
+  grid-template-columns: 0.85fr 0.55fr 1.4fr 2.1fr 1.1fr;
   gap: 18px;
   align-items: center;
   min-height: 67px;
@@ -2048,7 +2048,7 @@ footer > p {
   }
 
   .meal-list > div {
-    grid-template-columns: 52px 1fr auto;
+    grid-template-columns: 68px 1fr auto;
     gap: 2px 12px;
     min-height: 0;
     padding: 18px;
