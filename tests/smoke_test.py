@@ -1,9 +1,22 @@
+# -*- coding: utf-8 -*-
+
+import io
+import os
+import platform
+import sys
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
+# Windowsでも日本語のテスト結果を安全に表示できるようにする。
+if platform.system() == "Windows":
+    os.environ["PYTHONIOENCODING"] = "utf-8"
+    if hasattr(sys.stdout, "buffer"):
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "buffer"):
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-BASE_URL = "http://127.0.0.1:4173"
+BASE_URL = os.environ.get("SITE_URL", "http://127.0.0.1:4173")
 SITE_DIR = Path(__file__).resolve().parents[1]
 PREVIEW_DIR = SITE_DIR / "previews"
 PREVIEW_DIR.mkdir(exist_ok=True)
