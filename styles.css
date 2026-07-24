@@ -472,8 +472,8 @@ a {
 }
 
 .overview {
-  padding-top: clamp(72px, 8vw, 112px);
-  padding-bottom: clamp(80px, 9vw, 128px);
+  padding-top: clamp(56px, 5vw, 72px);
+  padding-bottom: clamp(64px, 6vw, 88px);
 }
 
 .section-heading {
@@ -496,85 +496,6 @@ a {
   line-height: 2.1;
 }
 
-.fact-grid {
-  display: grid;
-  grid-template-columns: 1.3fr repeat(3, 1fr);
-  gap: 1px;
-  margin-top: 0;
-  overflow: hidden;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.fact-card {
-  position: relative;
-  min-height: 210px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px;
-  background: var(--white);
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease;
-}
-
-.fact-card:hover {
-  z-index: 1;
-  transform: translateY(-4px);
-}
-
-.fact-card strong {
-  font-family: var(--font-serif);
-  font-size: 38px;
-  font-weight: 500;
-}
-
-.fact-card p {
-  margin: 4px 0 0;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-}
-
-.fact-number {
-  font-family: var(--font-serif);
-  font-size: 64px;
-  line-height: 1;
-}
-
-.fact-number small {
-  margin: 0 4px;
-  font-size: 16px;
-}
-
-.fact-icon {
-  position: absolute;
-  top: 26px;
-  right: 28px;
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  color: var(--vermilion);
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  font-family: var(--font-serif);
-}
-
-.fact-card-date {
-  color: var(--white);
-  background: var(--ink);
-}
-
-.fact-card-vermilion {
-  color: var(--white);
-  background: var(--vermilion);
-}
-
-.fact-card-vermilion .fact-icon {
-  color: var(--white);
-}
-
 .journey-flow h3 {
   margin: 0 0 25px;
   font-family: var(--font-serif);
@@ -584,7 +505,7 @@ a {
 }
 
 .journey-flow {
-  margin-top: clamp(64px, 8vw, 104px);
+  margin-top: 0;
 }
 
 .journey-flow-title {
@@ -1761,10 +1682,6 @@ footer > p {
     bottom: 70px;
   }
 
-  .fact-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .journey-flow ol {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 30px;
@@ -1899,33 +1816,8 @@ footer > p {
     font-size: 13px;
   }
 
-  .fact-grid {
-    grid-template-columns: repeat(2, 1fr);
-    margin-top: 52px;
-  }
-
-  .fact-card {
-    min-height: 165px;
-    padding: 20px;
-  }
-
-  .fact-number {
-    font-size: 45px;
-  }
-
-  .fact-card strong {
-    font-size: 30px;
-  }
-
-  .fact-icon {
-    top: 18px;
-    right: 18px;
-    width: 31px;
-    height: 31px;
-  }
-
   .journey-flow {
-    margin-top: 62px;
+    margin-top: 0;
   }
 
   .journey-flow-title {
@@ -2187,14 +2079,6 @@ footer > p {
     left: 24px;
     right: 24px;
     width: auto;
-  }
-
-  .fact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .fact-card {
-    min-height: 145px;
   }
 
   .day-header {
