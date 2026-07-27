@@ -416,6 +416,18 @@ a {
   color: #cf6f5a;
 }
 
+.verdict-board .is-choice {
+  background: var(--vermilion);
+}
+
+.verdict-board .is-choice strong {
+  color: var(--white);
+}
+
+.verdict-board .is-choice small {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .update-alert {
   max-width: 1120px;
   display: flex;
@@ -552,6 +564,18 @@ a {
   font-family: var(--font-serif);
   font-size: 110px;
   line-height: 1;
+}
+
+.pick-label {
+  align-self: flex-start;
+  margin-bottom: 16px;
+  padding: 6px 11px;
+  color: var(--white);
+  background: var(--vermilion);
+  border-radius: 99px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 .destination-copy h2 {

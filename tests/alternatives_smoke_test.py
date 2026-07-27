@@ -28,6 +28,8 @@ def assert_alternative_page(page, viewport_name):
     assert page.locator(".route-plan").count() == 2
     assert page.locator(".comparison-row").count() == 6
     assert page.get_by_text("2026年8月8日は運休日").count() == 1
+    assert page.get_by_text("OUR PICK · おすすめ").count() == 1
+    assert page.get_by_text("こだま951号。15:07着。").count() == 1
 
     image_results = page.locator("img").evaluate_all(
         "(images) => images.map((img) => ({src: img.src, ok: img.complete && img.naturalWidth > 0}))"
