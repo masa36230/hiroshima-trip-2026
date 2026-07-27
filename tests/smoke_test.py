@@ -36,7 +36,12 @@ def assert_page(page, viewport_name):
     assert page.locator("h1").inner_text().replace("\n", "") == "海と祈り、おいしい広島。"
     assert page.locator(".day-story").count() == 4
     assert page.locator(".timeline").count() == 4
+    assert page.locator(".reservation-badge").count() == 6
     assert page.locator("[data-booking]").count() == 7
+    confirmed_bookings = page.locator('[data-confirmed="true"]')
+    assert confirmed_bookings.count() == 5
+    assert all(confirmed_bookings.nth(index).is_checked() for index in range(5))
+    assert all(confirmed_bookings.nth(index).is_disabled() for index in range(5))
     page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-hero.png"))
     page.locator("#overview").scroll_into_view_if_needed()
     page.wait_for_timeout(250)
@@ -74,12 +79,12 @@ def assert_page(page, viewport_name):
         dimensions["scrollWidth"] <= dimensions["viewportWidth"] + 1
     ), f"Horizontal overflow in {viewport_name}: {dimensions}"
 
-    first_booking = page.locator('[data-booking="ferry"]')
-    first_booking.uncheck(force=True)
-    first_booking.check(force=True)
-    assert "1 / 7" in page.locator("#booking-count").inner_text()
+    optional_booking = page.locator('[data-booking="riho"]')
+    optional_booking.uncheck(force=True)
+    optional_booking.check(force=True)
+    assert "6 / 7" in page.locator("#booking-count").inner_text()
     page.reload(wait_until="networkidle")
-    assert page.locator('[data-booking="ferry"]').is_checked()
+    assert page.locator('[data-booking="riho"]').is_checked()
 
     first_details = page.locator(".accordion details").first
     first_details.locator("summary").click()

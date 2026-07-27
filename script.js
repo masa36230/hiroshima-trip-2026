@@ -127,7 +127,8 @@ function renderBookingProgress() {
 
 const savedBookings = readBookings();
 bookingInputs.forEach((input) => {
-  input.checked = Boolean(savedBookings[input.dataset.booking]);
+  const isConfirmed = input.dataset.confirmed === "true";
+  input.checked = isConfirmed || Boolean(savedBookings[input.dataset.booking]);
   input.addEventListener("change", () => {
     saveBookings();
     renderBookingProgress();
@@ -137,7 +138,7 @@ renderBookingProgress();
 
 resetChecklist.addEventListener("click", () => {
   bookingInputs.forEach((input) => {
-    input.checked = false;
+    input.checked = input.dataset.confirmed === "true";
   });
   localStorage.removeItem(bookingStorageKey);
   renderBookingProgress();
