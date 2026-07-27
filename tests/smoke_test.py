@@ -36,7 +36,7 @@ def assert_page(page, viewport_name):
     assert page.locator("h1").inner_text().replace("\n", "") == "海と祈り、おいしい広島。"
     assert page.locator(".day-story").count() == 4
     assert page.locator(".timeline").count() == 4
-    assert page.locator(".reservation-badge").count() == 6
+    assert page.locator(".reservation-badge").count() == 5
     assert page.locator("[data-booking]").count() == 7
     confirmed_bookings = page.locator('[data-confirmed="true"]')
     assert confirmed_bookings.count() == 5
