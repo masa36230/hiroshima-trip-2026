@@ -872,6 +872,25 @@ a {
   font-size: 12px;
 }
 
+.timeline .ride-banter {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 11px;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.07);
+  border-left: 2px solid var(--sea);
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.ride-banter span {
+  margin-right: 0.45em;
+  color: var(--sea);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
 .timeline-highlight > div {
   border-left-color: var(--vermilion) !important;
 }
@@ -2231,6 +2250,11 @@ footer > p {
   .tide-card p,
   .buffer-card p {
     color: #444;
+  }
+
+  .timeline .ride-banter {
+    color: #333;
+    background: #f5f2ec;
   }
 
   .timeline time {

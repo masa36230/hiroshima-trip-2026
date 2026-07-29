@@ -41,7 +41,7 @@ def assert_page(page, viewport_name):
     assert page.locator("h1").inner_text().replace("\n", "") == "海と祈り、おいしい広島。"
     assert page.locator(".day-story").count() == 4
     assert page.locator(".timeline").count() == 4
-    assert page.locator(".reservation-badge").count() == 5
+    assert page.locator(".reservation-badge").count() == 6
     assert "尾道・向島" in page.locator(".journey-flow").inner_text()
     assert page.locator("#day3 .day-header h3").inner_text().replace("\n", "") == "海を走って、返してから乾杯。"
     assert page.locator("#day3 img").get_attribute("src") == "assets/onomichi-cycling.webp"
@@ -52,12 +52,13 @@ def assert_page(page, viewport_name):
     assert page.get_by_text("広島駅周辺のお好み焼き店").count() == 1
     assert page.locator(".meal-special span").nth(1).inner_text() == "19:00"
     assert "19:00" in page.locator('[data-booking="kanawa"] + .custom-check + .check-rank + .check-copy small').inner_text()
-    assert "クロスバイク／シティサイクル2台" in page.locator('[data-booking="bike"] + .custom-check + .check-rank + .check-copy small').inner_text()
+    assert "夫：クロスバイク／妻：電動" in page.locator('[data-booking="bike"] + .custom-check + .check-rank + .check-copy small').inner_text()
+    assert "電動は甘え！" in page.locator("#day3 .ride-banter").inner_text()
     assert page.locator("[data-booking]").count() == 8
     confirmed_bookings = page.locator('[data-confirmed="true"]')
-    assert confirmed_bookings.count() == 5
-    assert all(confirmed_bookings.nth(index).is_checked() for index in range(5))
-    assert all(confirmed_bookings.nth(index).is_disabled() for index in range(5))
+    assert confirmed_bookings.count() == 6
+    assert all(confirmed_bookings.nth(index).is_checked() for index in range(6))
+    assert all(confirmed_bookings.nth(index).is_disabled() for index in range(6))
     page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-hero.png"))
     page.locator("#overview").scroll_into_view_if_needed()
     page.wait_for_timeout(250)
@@ -98,7 +99,7 @@ def assert_page(page, viewport_name):
     optional_booking = page.locator('[data-booking="riho"]')
     optional_booking.uncheck(force=True)
     optional_booking.check(force=True)
-    assert "6 / 8" in page.locator("#booking-count").inner_text()
+    assert "7 / 8" in page.locator("#booking-count").inner_text()
     page.reload(wait_until="domcontentloaded")
     assert page.locator('[data-booking="riho"]').is_checked()
 
