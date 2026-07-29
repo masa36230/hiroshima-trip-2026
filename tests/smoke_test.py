@@ -48,8 +48,13 @@ def assert_page(page, viewport_name):
     assert page.locator('#day3 .timeline li:has-text("向島一周サイクリング") time').inner_text() == "12:10"
     assert page.locator('#day3 .timeline li:has-text("尾道ブルワリー") time').inner_text() == "14:50"
     assert page.locator('#day3 .timeline li:has-text("かき船かなわ") time').inner_text() == "19:00"
+    assert page.locator("#day4 .day-header h3").inner_text().replace("\n", "") == "庭園と城を歩いて、余韻のまま帰ろう。"
+    assert page.locator('#day4 .timeline li:has-text("広島城") time').inner_text() == "12:20"
+    assert "天守は外観のみ" in page.locator('#day4 .timeline li:has-text("広島城")').inner_text()
+    assert "縮景園・広島城" in page.locator(".journey-flow").inner_text()
     assert page.get_by_text("みっちゃん総本店").count() == 0
     assert page.get_by_text("広島駅周辺のお好み焼き店").count() == 1
+    assert "13:25" in page.locator('[data-booking="okonomiyaki"] + .custom-check + .check-rank + .check-copy small').inner_text()
     assert page.locator(".meal-special span").nth(1).inner_text() == "19:00"
     assert "19:00" in page.locator('[data-booking="kanawa"] + .custom-check + .check-rank + .check-copy small').inner_text()
     assert "夫：クロスバイク／妻：電動" in page.locator('[data-booking="bike"] + .custom-check + .check-rank + .check-copy small').inner_text()
