@@ -30,6 +30,10 @@ def assert_alternative_page(page, viewport_name):
     assert page.get_by_text("2026年8月8日は運休日").count() == 1
     assert page.get_by_text("OUR PICK · おすすめ").count() == 1
     assert page.get_by_text("こだま951号。15:07着。").count() == 1
+    assert page.locator(".hero-note strong").inner_text() == "8/8（土）19:00"
+    assert page.locator(".condition-row .is-fixed span").inner_text() == "19:00"
+    assert page.locator(".is-dinner time").all_inner_texts() == ["19:00", "19:00"]
+    assert page.get_by_text("19:00予約の安全性").count() == 1
 
     image_results = page.locator("img").evaluate_all(
         "(images) => images.map((img) => ({src: img.src, ok: img.complete && img.naturalWidth > 0}))"

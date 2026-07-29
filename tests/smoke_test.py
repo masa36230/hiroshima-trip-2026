@@ -37,6 +37,9 @@ def assert_page(page, viewport_name):
     assert page.locator(".day-story").count() == 4
     assert page.locator(".timeline").count() == 4
     assert page.locator(".reservation-badge").count() == 5
+    assert page.locator('#day3 .timeline li:has-text("かき船かなわ") time').inner_text() == "19:00"
+    assert page.locator(".meal-special span").nth(1).inner_text() == "19:00"
+    assert "19:00" in page.locator('[data-booking="kanawa"] + .custom-check + .check-rank + .check-copy small').inner_text()
     assert page.locator("[data-booking]").count() == 7
     confirmed_bookings = page.locator('[data-confirmed="true"]')
     assert confirmed_bookings.count() == 5
@@ -97,6 +100,12 @@ def assert_page(page, viewport_name):
     page.locator("#day2").scroll_into_view_if_needed()
     page.wait_for_timeout(300)
     page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-day2.png"))
+    page.locator("#day3").scroll_into_view_if_needed()
+    page.wait_for_timeout(300)
+    page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-day3.png"))
+    page.locator('#day3 .timeline li:has-text("かき船かなわ")').scroll_into_view_if_needed()
+    page.wait_for_timeout(300)
+    page.screenshot(path=str(PREVIEW_DIR / f"{viewport_name}-day3-dinner.png"))
     assert not errors, "\n".join(errors)
 
 
