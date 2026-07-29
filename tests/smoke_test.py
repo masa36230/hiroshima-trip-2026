@@ -24,6 +24,10 @@ PREVIEW_DIR.mkdir(exist_ok=True)
 
 def assert_page(page, viewport_name):
     errors = []
+    page.route(
+        "https://fonts.googleapis.com/**",
+        lambda route: route.fulfill(status=200, content_type="text/css", body=""),
+    )
     page.on(
         "console",
         lambda message: errors.append(f"console:{message.type}:{message.text}")
@@ -31,16 +35,23 @@ def assert_page(page, viewport_name):
         else None,
     )
     page.on("pageerror", lambda error: errors.append(f"pageerror:{error}"))
-    page.goto(BASE_URL, wait_until="networkidle")
+    page.goto(BASE_URL, wait_until="domcontentloaded")
+    page.wait_for_selector("h1")
 
     assert page.locator("h1").inner_text().replace("\n", "") == "海と祈り、おいしい広島。"
     assert page.locator(".day-story").count() == 4
     assert page.locator(".timeline").count() == 4
     assert page.locator(".reservation-badge").count() == 5
+    assert "尾道・向島" in page.locator(".journey-flow").inner_text()
+    assert page.locator("#day3 .day-header h3").inner_text().replace("\n", "") == "海を走って、返してから乾杯。"
+    assert page.locator("#day3 img").get_attribute("src") == "assets/onomichi-cycling.webp"
+    assert page.locator('#day3 .timeline li:has-text("向島一周サイクリング") time').inner_text() == "12:10"
+    assert page.locator('#day3 .timeline li:has-text("尾道ブルワリー") time').inner_text() == "14:50"
     assert page.locator('#day3 .timeline li:has-text("かき船かなわ") time').inner_text() == "19:00"
     assert page.locator(".meal-special span").nth(1).inner_text() == "19:00"
     assert "19:00" in page.locator('[data-booking="kanawa"] + .custom-check + .check-rank + .check-copy small').inner_text()
-    assert page.locator("[data-booking]").count() == 7
+    assert "クロスバイク／シティサイクル2台" in page.locator('[data-booking="bike"] + .custom-check + .check-rank + .check-copy small').inner_text()
+    assert page.locator("[data-booking]").count() == 8
     confirmed_bookings = page.locator('[data-confirmed="true"]')
     assert confirmed_bookings.count() == 5
     assert all(confirmed_bookings.nth(index).is_checked() for index in range(5))
@@ -85,8 +96,8 @@ def assert_page(page, viewport_name):
     optional_booking = page.locator('[data-booking="riho"]')
     optional_booking.uncheck(force=True)
     optional_booking.check(force=True)
-    assert "6 / 7" in page.locator("#booking-count").inner_text()
-    page.reload(wait_until="networkidle")
+    assert "6 / 8" in page.locator("#booking-count").inner_text()
+    page.reload(wait_until="domcontentloaded")
     assert page.locator('[data-booking="riho"]').is_checked()
 
     first_details = page.locator(".accordion details").first

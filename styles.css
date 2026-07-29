@@ -851,6 +851,21 @@ a {
   white-space: nowrap;
 }
 
+.action-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 8px;
+  color: var(--ink);
+  background: var(--sea);
+  border-radius: 99px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .timeline p {
   margin: 6px 0 0;
   color: rgba(255, 255, 255, 0.6);
