@@ -48,6 +48,8 @@ def assert_page(page, viewport_name):
     assert page.locator('#day3 .timeline li:has-text("向島一周サイクリング") time').inner_text() == "12:10"
     assert page.locator('#day3 .timeline li:has-text("尾道ブルワリー") time').inner_text() == "14:50"
     assert page.locator('#day3 .timeline li:has-text("かき船かなわ") time').inner_text() == "19:00"
+    assert page.get_by_text("みっちゃん総本店").count() == 0
+    assert page.get_by_text("広島駅周辺のお好み焼き店").count() == 1
     assert page.locator(".meal-special span").nth(1).inner_text() == "19:00"
     assert "19:00" in page.locator('[data-booking="kanawa"] + .custom-check + .check-rank + .check-copy small').inner_text()
     assert "クロスバイク／シティサイクル2台" in page.locator('[data-booking="bike"] + .custom-check + .check-rank + .check-copy small').inner_text()
